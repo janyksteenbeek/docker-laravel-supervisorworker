@@ -9,7 +9,10 @@ ENV QUEUE_CONNECTION=redis
 ENV QUEUE_NAME=default
 
 # Install all dependencies and continue to install Supervisor
-RUN apk add --update libxml2-dev && docker-php-ext-install pdo pdo_mysql pcntl posix soap redis tokenizer json xml mbstring  \
+RUN apk add --update libxml2-dev \
+	&& pecl install -o -f redis \
+	&& rm -rf /tmp/pear \
+	&& docker-php-ext-install pdo pdo_mysql pcntl posix soap redis tokenizer json xml mbstring \
 	&& apk add --update supervisor && rm -rf /tmp/* /var/cache/apk/*
 
 # Define working directory
