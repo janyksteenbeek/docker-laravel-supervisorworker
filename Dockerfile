@@ -10,7 +10,7 @@ ENV QUEUE_NAME=default
 
 # Install all dependencies and continue to install Supervisor
 RUN apk --no-cache add pcre-dev ${PHPIZE_DEPS} \ 
-	&& apk add --update libxml2-dev libonig-dev \
+	&& apk add --update libxml2-dev oniguruma-devel \
 	&& pecl install -o -f redis \
 	&& docker-php-ext-install pdo pdo_mysql pcntl posix soap tokenizer json xml mbstring \
 	&& docker-php-ext-enable redis \
