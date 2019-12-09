@@ -1,6 +1,10 @@
 # Laravel Queue Worker
 
-A Docker image for running your Laravel queue workers inside Supervisord. The Docker image runs on PHP 7.3.
+A Docker image for running your Laravel queue workers inside Supervisord. The Docker image runs on `PHP 7.4` and includes the following extensions:
+
+```
+pdo pdo_mysql pcntl posix soap redis tokenizer json xml mbstring
+```
 
 ## Environment Configuration
 

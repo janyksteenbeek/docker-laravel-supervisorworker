@@ -1,15 +1,15 @@
-FROM php:7.3-alpine
+FROM php:7.4-alpine
 
 LABEL maintainer="Janyk Steenbeek <info@janyksteenbeek.nl>" \
-		version.image="v0.1" \
+		version.image="v0.2" \
 		version.php=$PHP_VERSION \
-		description="A supervisor configured to run with Laravel artisan queue workers"
+		description="A supervisord container configured to run with Laravel artisan queue workers on PHP 7.4"
 
 ENV QUEUE_CONNECTION=redis
 ENV QUEUE_NAME=default
 
 # Install all dependencies and continue to install Supervisor
-RUN apk add --update libxml2-dev && docker-php-ext-install pdo pdo_mysql pcntl posix soap tokenizer json xml mbstring  \
+RUN apk add --update libxml2-dev && docker-php-ext-install pdo pdo_mysql pcntl posix soap redis tokenizer json xml mbstring  \
 	&& apk add --update supervisor && rm -rf /tmp/* /var/cache/apk/*
 
 # Define working directory
