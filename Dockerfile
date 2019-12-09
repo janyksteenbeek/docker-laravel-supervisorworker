@@ -12,7 +12,8 @@ ENV QUEUE_NAME=default
 RUN apk --no-cache add pcre-dev ${PHPIZE_DEPS} \ 
 	&& apk add --update libxml2-dev \
 	&& pecl install -o -f redis \
-	&& docker-php-ext-install pdo pdo_mysql pcntl posix soap redis tokenizer json xml mbstring \
+	&& docker-php-ext-install pdo pdo_mysql pcntl posix soap tokenizer json xml mbstring \
+	&& docker-php-ext-enable redis \
 	&& apk add --update supervisor \
         && apk del pcre-dev ${PHPIZE_DEPS} \
 	&& rm -rf /tmp/* /var/cache/apk/*
